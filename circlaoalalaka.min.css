@@ -1,0 +1,1 @@
+html,body{height:100vh;overflow:hidden}#main-canvas{height:350px;width:700px;border:2px solid black}#brush-define{height:150px;width:150px;position:absolute;bottom:calc(100% - 350px);left:750px;border:2px solid black}#copy-img{height:150px;width:150px;position:absolute;bottom:calc(100% - 350px);left:950px;border:2px solid black}
