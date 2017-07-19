@@ -11,13 +11,27 @@ html, body {
   border: 2px solid black;
 }
 
-#brush-define {
+#brush-define-wrapper {
   height: 150px;
   width: 150px;
   position: absolute;
   bottom: calc(100% - 350px);
   left: 750px;
   border: 2px solid black;
+}
+
+#brush-define-trash {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  height: 15px;
+  width: 150px;
+  background-color: red;
+}
+
+#brush-define {
+  height: 150px;
+  width: 150px;
 }
 
 #copy-img {
@@ -27,4 +41,31 @@ html, body {
   bottom: calc(100% - 350px);
   left: 950px;
   border: 2px solid black;
+}
+
+#colors {
+  display: flex;
+  width: 260px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.color-option {
+
+  height: 20px;
+  width: 65px;
+  background-color:yellow;
+}
+
+#make-shapes {
+  position: absolute;
+  left: 550px;
+  width: 150px;
+  border: 2px solid black;
+  height: 88px;
+}
+
+.make-shape {
+  border-bottom: 2px solid black;
+  cursor: pointer;
 }

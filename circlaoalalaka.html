@@ -9,14 +9,39 @@
     <script src="js/circlaoalalaka.js"></script>
     <script type="text/paperscript" canvas="brush-define" src="js/brushdefine.js">
     </script>
-    <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js">
-    </script>
+    <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
+    <script type="text/paperscript" canvas="main-canvas" src="js/squarecanvas.js"></script>
 </head>
 <body>
   <canvas id="main-canvas" resize stats hidpi="off"></canvas>
-  <canvas id="brush-define" resize stats hidpi="off"></canvas>
+  <div id="make-shapes">
+    <div class="make-shape" id="make-rectangle">RECTANGLE</div>
+    <div class="make-shape" id="make-triangle">TRIANGLE</div>
+    <div class="make-shape" id="make-circle">CIRCLE</div>
+    <div class="make-shape" id="make-line">LINE</div>
+  </div>
+  <div id="brush-define-wrapper">
+    <canvas id="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash"></div>
+  </div>
   <img id="copy-img"></div>
   <div id="controls"></div>
-
+  <div id="colors">
+    <div class="color-option" id="navy"></div>
+    <div class="color-option" id="blue"></div>
+    <div class="color-option" id="aqua"></div>
+    <div class="color-option" id="teal"></div>
+    <div class="color-option" id="olive"></div>
+    <div class="color-option" id="green"></div>
+    <div class="color-option" id="lime"></div>
+    <div class="color-option" id="yellow"></div>
+    <div class="color-option" id="orange"></div>
+    <div class="color-option" id="red"></div>
+    <div class="color-option" id="maroon"></div>
+    <div class="color-option" id="fuchsia"></div>
+    <div class="color-option" id="purple"></div>
+    <div class="color-option" id="black"></div>
+    <div class="color-option" id="gray"></div>
+    <div class="color-option" id="silver"></div>
 </body>
 </html>
