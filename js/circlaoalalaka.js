@@ -1,13 +1,18 @@
 //GLOBAL SHIT
 var currentColor = 'black'
 var startingPoint = "notinitialized";
-var brushPath;
-var brushDefineTempArr;
-var brushDefineShape = [];
-var brushDefinePos = [];
+var defineBrush;
+
+var brushPathImg;
+var rect;
+var rectPath;
+var triangle;
+// var trianglePath;
+
 
 //MODE
-var brushMode = true;
+var defaultBrushMode = true;
+var customBrushMode = false;
 var rectangleMode = false;
 var triangleMode = false;
 var circleMode = false;
@@ -15,27 +20,10 @@ var lineMode = false;
 
 
 function setMode(shape) {
-  brushMode = false;
-  rectangleMode = false;
-  triangleMode = false;
-  circleMode = false;
-  lineMode = false;
-  if (shape == "brush") {
-    brushMode = true;
-  }
-  if (shape == "rectangle") {
-    rectangleMode = true;
-  }
-  if (shape == "triangle") {
-    triangleMode = true;
-  }
-  if (shape == "rectangle") {
-    circleMode = true;
-  }
-  if (shape == "line") {
-    lineMode = true;
-  }
-  console.log("mode = " + shape);
+  defaultBrushMode = customBrushMode = rectangleMode = triangleMode =
+  circleMode = lineMode = false;
+  window[shape + "Mode"] = true;
+  console.log(shape);
 }
 
 $(document).ready(function() {
@@ -49,7 +37,6 @@ $(document).ready(function() {
   $('.make-shape').on('click', function() {
     var idName = $(this)[0].id
     var shapeMode = idName.split("-").pop();
-
     setMode(shapeMode);
   })
 

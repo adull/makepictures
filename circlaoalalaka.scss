@@ -34,13 +34,31 @@ html, body {
   width: 150px;
 }
 
-#copy-img {
+#weird-brush-define-wrapper {
   height: 150px;
   width: 150px;
   position: absolute;
   bottom: calc(100% - 350px);
   left: 950px;
   border: 2px solid black;
+}
+
+#weird-brush-define {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  bottom: calc(100% - 350px);
+  left: 950px;
+  border: 2px solid black;
+}
+
+#weird-brush-define-trash {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  height: 15px;
+  width: 150px;
+  background-color: red;
 }
 
 #colors {
@@ -61,8 +79,8 @@ html, body {
   position: absolute;
   left: 550px;
   width: 150px;
-  border: 2px solid black;
-  height: 88px;
+  // border: 2px solid black;
+  // height: 88px;
 }
 
 .make-shape {

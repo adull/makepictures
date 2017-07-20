@@ -1,23 +1,6 @@
+var canvas = $('#brush-define');
+var context = canvas[0].getContext('2d');
 
-
-function onMouseDown(event) {
-  if(startingPoint == "notinitialized") {
-    startingPoint = event.point;
-    var tempArr = [];
-    tempArr.push(0)
-    tempArr.push(0)
-    brushDefinePos.push(tempArr)
-    console.log("new starting Point")
-
-  }
-  brushPath = new Path({
-    segments: [event.point],
-    strokeColor: currentColor,
-    closed: false
-  });
-  setMode("brush")
-
-}
 $("#brush-define-wrapper").on('mouseenter', function() {
   $("#brush-define-trash").css("opacity", "1");
 });
@@ -25,42 +8,69 @@ $("#brush-define-wrapper").on('mouseleave', function() {
   $("#brush-define-trash").css("opacity", "0");
 })
 $('#brush-define-trash').on('click', function() {
-  console.log("trigga")
-  brushDefineShape = [];
-  var canvas = $('#brush-define')[0];
-  var context = canvas.getContext('2d');
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  // brushDefineShape[0] = [];
-  for(i = 0; i < brushDefineShape.length; i ++ ) {
-    brushDefineShape[i] = [];
-  }
-  brushPath.segments = [];
-  brushDefineTempArr = [];
-  startingPoint = "notinitialized";
+  defineBrush.removeSegments();
+  project.activeLayer.removeChildren();
+  brushPathImg = canvas[0].toDataURL();
+  setMode('defaultBrush')
 })
 
+function onMouseDown(event) {
+  if(rectangleMode) {
+    startShapeX = event.point.x;
+    startShapeY = event.point.y;
+    rect = new Rectangle(event.point.x, event.point.y, 0, 0);
+    rectPath = new Path.Rectangle(rect)
+    brushPathImg = canvas[0].toDataURL();
+  }
+  else if(triangleMode) {
+    startShapeX = event.point.x;
+    startShapeY = event.point.y;
+    triangle = new Path.RegularPolygon(new Point(event.point.x, event.point.y), 3, 0);
+  }
+  else if(defaultBrushMode || customBrushMode) {
+    defineBrush = new Path({
+      segments: [event.point],
+      strokeColor: currentColor,
+      closed: false
+    });
+    setMode("customBrush");
+  }
+}
+
 function onMouseDrag(event) {
-    brushPath.add(event.point);
-    canvas = $('#brush-define');
-    var dataURL = canvas[0].toDataURL();
-    $('#copy-img').attr("src",dataURL);
-    brushDefineTempArr = [];
-    brushDefineTempArr.push(startingPoint.x - event.point.x);
-    brushDefineTempArr.push(startingPoint.y - event.point.y);
-    brushDefinePos.push(brushDefineTempArr);
+  if(rectangleMode) {
+    rectPath.removeSegments();
+    rect.width = event.point.x - startShapeX;
+    rect.height = event.point.y - startShapeY;
+    rectPath = new Path.Rectangle(rect)
+    rectPath.fillColor = currentColor;
+    brushPathImg = canvas[0].toDataURL();
+  }
+  else if(triangleMode) {
+    triangle.removeSegments();
+    var height = startShapeY - event.point.y;
+    triangle = new Path.RegularPolygon(new Point(event.point.x, event.point.y), 3, height);
+    var width = startShapeX - event.point.x;
+    triangle.rotation += width;
+    triangle.fillColor = currentColor;
+    brushPathImg = canvas[0].toDataURL();
+  }
+  else if(defaultBrushMode || customBrushMode) {
+    defineBrush.add(event.point);
+    brushPathImg = canvas[0].toDataURL();
+  }
+
 }
 function onMouseUp(event) {
-  brushDefineTempArr = brushPath.segments;
-  brushDefineShape.push(brushDefineTempArr);
-  console.log("brushDefineShape after mouseup brushdefine")
-  console.log(brushDefineShape)
+
 }
 
 function onKeyDown(event) {
   if(event.key == 'k') {
-    brushPath.fillColor = currentColor;
+    defineBrush.fillColor = currentColor;
+    brushPathImg = canvas[0].toDataURL();
   }
   if(event.key == 'g') {
-    console.log(brushDefineShape);
+    // console.log(brushDefineShape);
   }
 }

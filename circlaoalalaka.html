@@ -7,29 +7,36 @@
     <script type="text/javascript" src="js/paper-full.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/circlaoalalaka.js"></script>
-    <script type="text/paperscript" canvas="brush-define" src="js/brushdefine.js">
-    </script>
+    <script type="text/paperscript" canvas="brush-define" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="weird-brush-define" src="js/weirdbrushdefine.js"></script>
     <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
-    <script type="text/paperscript" canvas="main-canvas" src="js/squarecanvas.js"></script>
+    <!-- <script type="text/paperscript" canvas="main-canvas" src="js/squarecanvas.js"></script> -->
 </head>
 <body>
   <canvas id="main-canvas" resize stats hidpi="off"></canvas>
   <div id="make-shapes">
+    <div class="make-shape" id="make-defaultBrush">DEFAULT BRUSH</div>
+    <div class="make-shape" id="make-customBrush">CUSTOM BRUSH</div>
     <div class="make-shape" id="make-rectangle">RECTANGLE</div>
     <div class="make-shape" id="make-triangle">TRIANGLE</div>
     <div class="make-shape" id="make-circle">CIRCLE</div>
     <div class="make-shape" id="make-line">LINE</div>
+
+
   </div>
   <div id="brush-define-wrapper">
     <canvas id="brush-define" resize stats hidpi="off"></canvas>
     <div id="brush-define-trash"></div>
   </div>
-  <img id="copy-img"></div>
+  <div id="weird-brush-define-wrapper">
+    <canvas id="weird-brush-define"></canvas>
+    <div id="weird-brush-define-trash"></div>
+  </div>
   <div id="controls"></div>
   <div id="colors">
     <div class="color-option" id="navy"></div>
     <div class="color-option" id="blue"></div>
-    <div class="color-option" id="aqua"></div>
+    <div class="color-option" id="white"></div>
     <div class="color-option" id="teal"></div>
     <div class="color-option" id="olive"></div>
     <div class="color-option" id="green"></div>
