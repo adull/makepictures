@@ -2,12 +2,14 @@
 var currentColor = 'black'
 var startingPoint = "notinitialized";
 var defineBrush;
+var currentDefineBrush;
 
 var brushPathImg;
 var rect;
 var rectPath;
 var triangle;
-// var trianglePath;
+var circleRect;
+var circle;
 
 
 //MODE
@@ -16,12 +18,12 @@ var customBrushMode = false;
 var rectangleMode = false;
 var triangleMode = false;
 var circleMode = false;
-var lineMode = false;
 
 
 function setMode(shape) {
   defaultBrushMode = customBrushMode = rectangleMode = triangleMode =
-  circleMode = lineMode = false;
+  circleMode = false;
+  console.log(window[shape + "Mode"]);
   window[shape + "Mode"] = true;
   console.log(shape);
 }

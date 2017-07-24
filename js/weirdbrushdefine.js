@@ -2,6 +2,7 @@ console.log("fjah")
 
 var startingPoint = "notinitialized";
 var brushPath;
+var brushDefinePos = [];
 var brushDefineShape = []
 var brushDefineTempArr = [];
 
@@ -35,7 +36,7 @@ $("#weird-brush-define-wrapper").on('mouseleave', function() {
 $('#weird-brush-define-trash').on('click', function() {
   console.log("trigga")
   brushDefineShape = [];
-  var canvas = $('#weird-brush-define')[0];
+  var canvas = $('#brush-define-5')[0];
   var context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
   // brushDefineShape[0] = [];
@@ -49,7 +50,7 @@ $('#weird-brush-define-trash').on('click', function() {
 
 function onMouseDrag(event) {
     brushPath.add(event.point);
-    var canvas = $('#weird-brush-define');
+    var canvas = $('#brush-define-5');
     var dataURL = canvas[0].toDataURL();
     $('#copy-img').attr("src",dataURL);
     brushDefineTempArr = [];

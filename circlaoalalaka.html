@@ -5,12 +5,14 @@
     <title>IDK</title>
     <link rel="stylesheet" href="circlaoalalaka.min.css">
     <script type="text/javascript" src="js/paper-full.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="js/jquery.3.1.1.min.js"></script>
     <script src="js/circlaoalalaka.js"></script>
-    <script type="text/paperscript" canvas="brush-define" src="js/brushdefine.js"></script>
-    <script type="text/paperscript" canvas="weird-brush-define" src="js/weirdbrushdefine.js"></script>
+    <script type="text/paperscript" canvas="brush-define-1" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="brush-define-2" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="brush-define-3" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="brush-define-4" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="brush-define-5" src="js/weirdbrushdefine.js"></script>
     <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
-    <!-- <script type="text/paperscript" canvas="main-canvas" src="js/squarecanvas.js"></script> -->
 </head>
 <body>
   <canvas id="main-canvas" resize stats hidpi="off"></canvas>
@@ -20,18 +22,33 @@
     <div class="make-shape" id="make-rectangle">RECTANGLE</div>
     <div class="make-shape" id="make-triangle">TRIANGLE</div>
     <div class="make-shape" id="make-circle">CIRCLE</div>
-    <div class="make-shape" id="make-line">LINE</div>
 
 
   </div>
-  <div id="brush-define-wrapper">
-    <canvas id="brush-define" resize stats hidpi="off"></canvas>
-    <div id="brush-define-trash"></div>
+  <div id="brush-define-text-1">CUSTOM BRUSHES</div>
+  <div class="brush-define-wrapper" id="brush-define-wrapper-1">
+    <canvas id="brush-define-1" class="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash-1" class="brush-define-trash">&times;</div>
   </div>
-  <div id="weird-brush-define-wrapper">
-    <canvas id="weird-brush-define"></canvas>
-    <div id="weird-brush-define-trash"></div>
+  <div class="brush-define-wrapper" id="brush-define-wrapper-2">
+    <canvas id="brush-define-2" class="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash-2" class="brush-define-trash">&times;</div>
   </div>
+  <div class="brush-define-wrapper" id="brush-define-wrapper-3">
+    <canvas id="brush-define-3" class="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash-3" class="brush-define-trash">&times;</div>
+  </div>
+  <div class="brush-define-wrapper" id="brush-define-wrapper-4">
+    <canvas id="brush-define-4" class="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash-4" class="brush-define-trash">&times;</div>
+  </div>
+  <div class="vertical-divider"></div>
+  <div id="brush-define-text-2">MORE CUSTOM BRUSHES THESE ONES ARE WEIRD THOUGH</div>
+  <div class="brush-define-wrapper" id="brush-define-wrapper-5">
+    <canvas id="brush-define-5" class="brush-define" resize stats hidpi="off"></canvas>
+    <div id="brush-define-trash-5" class="brush-define-trash">&times;</div>
+  </div>
+
   <div id="controls"></div>
   <div id="colors">
     <div class="color-option" id="navy"></div>
