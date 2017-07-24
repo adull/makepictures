@@ -104,11 +104,33 @@ html, body {
 }
 
 #brush-define-wrapper-5 {
-  top:192px;
+  top:4px;
   left: 1122px;
+  width: 413px;
+  height: 500px;
+  #brush-define-5 {
+    width: 413px;
+    height: 500px;
+  }
+}
+
+#rules-1 {
+  position: absolute;
+  left: 1535px;
+  top: 0;
+  width: 70px;
+  word-wrap: break-word;
+}
+
+#rules-2 {
+  position: absolute;
+  top: 460px;
+  width: 200px;
 }
 
 #colors {
+  position: absolute;
+  top: 370px;
   display: flex;
   width: 260px;
   flex-direction: row;
@@ -116,7 +138,6 @@ html, body {
 }
 
 .color-option {
-
   height: 20px;
   width: 65px;
   background-color:yellow;
@@ -133,4 +154,27 @@ html, body {
 .make-shape {
   border-bottom: 2px solid black;
   cursor: pointer;
+}
+
+#eughhhghgh_controls {
+  position: absolute;
+  left: 723px;
+  top: 356px;
+  display: flex;
+}
+
+.toggle-thing {
+  position: relative;
+  left: 5px;
+  height: 12px;
+  width: 12px;
+  border: 2px solid black;
+}
+
+.toggle-x {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  opacity: 0;
 }
