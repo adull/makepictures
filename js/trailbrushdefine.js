@@ -65,17 +65,11 @@ function onMouseDown(event) {
 }
 
 function onMouseDrag(event) {
+  // console.log(groupNum);
+  // console.log(window["group"+ groupNum]);
   var canvas = $(this.view.element);
   if(rectangleMode) {
-    if(traceMod == false) {
-      console.log(false)
-      console.log(traceMod)
-      rectPath.removeSegments();
-    }
-    else {
-      console.log(true)
-      console.log(traceMod)
-    }
+    // rectPath.removeSegments();
     rect.width = event.point.x - startShapeX;
     rect.height = event.point.y - startShapeY;
     rectPath = new Path.Rectangle(rect)
@@ -83,9 +77,7 @@ function onMouseDrag(event) {
     brushPathImg = canvas[0].toDataURL();
   }
   else if(triangleMode) {
-    if(traceMod == false) {
-      triangle.removeSegments();
-    }
+    // triangle.removeSegments();
     var height = startShapeY - event.point.y;
     triangle = new Path.RegularPolygon(new Point(event.point.x, event.point.y), 3, height);
     var width = startShapeX - event.point.x;
@@ -104,9 +96,7 @@ function onMouseDrag(event) {
     }
   }
   else if(circleMode) {
-    if(traceMod == false) {
-      circle.remove();
-    }
+    // circle.remove();
     var width = event.point.x - startShapeX;
     var height = event.point.y - startShapeY;
     if(event.modifiers.shift) {

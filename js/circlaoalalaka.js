@@ -11,6 +11,8 @@ var triangle;
 var circleRect;
 var circle;
 
+//modifiers
+var traceMod = false;
 
 //MODE
 var defaultBrushMode = true;
@@ -18,6 +20,7 @@ var customBrushMode = false;
 var rectangleMode = false;
 var triangleMode = false;
 var circleMode = false;
+
 
 
 function setMode(shape) {
@@ -40,6 +43,21 @@ $(document).ready(function() {
     var idName = $(this)[0].id
     var shapeMode = idName.split("-").pop();
     setMode(shapeMode);
+  })
+  $('.toggle-thing').on('click', function() {
+    console.log(($(this)[0].id));
+    var id = ($(this)[0].id)
+    var toggle = id.slice(7,id.length);
+    console.log(toggle);
+    console.log(window[toggle + "Mod"]);
+    if(window[toggle + "Mod"] == false) {
+      $("#" + toggle + "-x").css("opacity","1");
+      window[toggle + "Mod"] = true;
+    }
+    else {
+      $("#" + toggle + "-x").css("opacity","0");
+      window[toggle + "Mod"] = false;
+    }
   })
 
 

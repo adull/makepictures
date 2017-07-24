@@ -66,7 +66,9 @@ function onMouseDrag(event) {
     }
   }
   else if(rectangleMode) {
-    rectPath.removeSegments();
+    if(traceMod == false) {
+      rectPath.removeSegments();
+    }
     rect.width = event.point.x - startShapeX;
     rect.height = event.point.y - startShapeY;
     rectPath = new Path.Rectangle(rect)
@@ -74,7 +76,9 @@ function onMouseDrag(event) {
     group.addChild(rectPath);
   }
   else if(triangleMode) {
-    triangle.removeSegments();
+    if(traceMod == false) {
+      triangle.removeSegments();
+    }
     var width = startShapeX - event.point.x;
     var height = startShapeY - event.point.y;
     triangle = new Path.RegularPolygon(new Point(event.point.x, event.point.y), 3, height);
@@ -83,9 +87,9 @@ function onMouseDrag(event) {
     group.addChild(triangle);
   }
   else if(circleMode) {
-    circle.remove();
-    // var width = startShapeX - event.point.x
-    // var height = startShapeY - event.point.y;
+    if(traceMod == false) {
+      circle.remove();
+    }
     var width = event.point.x - startShapeX;
     var height = event.point.y - startShapeY;
     if(event.modifiers.shift) {
