@@ -10,7 +10,6 @@ function onMouseDown(event) {
   group = new Group();
   if(customBrushMode) {
     if(defineBrush) {
-      //weird lag issues made me do it
       setTimeout(function() {
         copy = new Raster(brushPathImg, event.point);
         group.addChild(copy);
@@ -111,9 +110,9 @@ function onMouseDrag(event) {
     group.bringToFront;
   }
   else if(imageMode) {
-    if(traceMod == false) {
+    // if(traceMod == false) {
       imgRectPath.removeSegments();
-    }
+    // }
     imgRect.width = event.point.x - startShapeX;
     imgRect.height = event.point.y - startShapeY;
     imgRectPath = new Path.Rectangle(imgRect);
@@ -126,6 +125,7 @@ function onMouseDrag(event) {
 
 function onMouseUp() {
   if(imageMode) {
+    // console.log("ITS IMAGE MODE BABY")
     // group.removeChildren()
     if(!imgRaster) {
       imgRectPath.remove();
@@ -135,14 +135,20 @@ function onMouseUp() {
       heightRatio = imgRectPath.bounds.height/imgRaster.bounds.height;
 
       var imagePoint = new Point(startShapeX, startShapeY);
-      console.log(imgRectPath);
+      // console.log(imgRectPath);
       var raster = new Raster(imgRaster.source, imgRectPath.bounds.center);
       raster.scale(widthRatio, heightRatio);
       group.addChild(raster)
       imgRectPath.remove();
     }
-    if(fullImgMod) {
-
+    if(fullImgMod && imgRaster) {
+      var imagePoint = new Point(startShapeX, startShapeY);
+      console.log(imgRectPath);
+      var raster = new Raster(imgRaster.source, imagePoint);
+      group = new Group(imgRectPath, raster);
+      group.clipped = true;
+      console.log(group);
+      // imgRectPath.remove();
     }
   }
 }

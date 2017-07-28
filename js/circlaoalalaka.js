@@ -12,7 +12,6 @@ var circle;
 var imgRect;
 var imgRectPath;
 var imgRaster;
-var imgRasterMain;
 
 //modifiers
 var traceMod = false;
@@ -38,10 +37,8 @@ var colorPickedBlue;
 
 function setMode(shape) {
   defaultBrushMode = customBrushMode = rectangleMode = triangleMode =
-  circleMode = false;
-  // console.log(window[shape + "Mode"]);
+  circleMode = imageMode = false;
   window[shape + "Mode"] = true;
-  // console.log(shape);
 }
 
 $(document).ready(function() {

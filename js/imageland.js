@@ -4,9 +4,8 @@
 // }
 var canvas;
 
+var topLeft = this.view.topLeft;
 var center = this.view.center;
-console.log("center")
-console.log(center);
 var dontPost = false;
 var raster;
 
@@ -19,39 +18,34 @@ function onDocumentDrag(event) {
 }
 
 function onDocumentDrop(event) {
+	if(canvas) {
+		console.log("yes")
+		var context = canvas[0].getContext('2d');
+		// context.clearRect(0, 0, canvas.width, canvas.height);
+		var rect = new Path.Rectangle(0,0,canvas.height, canvas.width);
+		rect.fillColor = 'red';
+		console.log(rect);
+	}
 	console.log(canvas);
 	event.preventDefault();
 	var file = event.dataTransfer.files[0];
 	var reader = new FileReader();
-
-	reader.onloadstart = function(event) {
-
-	}
-
 	reader.onload = function (event) {
-		// console.log("onloadstart begin")
 		raster = new Raster(event.target.result, center);
 		raster.visible = true;
 		raster.fitBounds(view.bounds);
-		// raster.view.element = document.getElementById("image-land");
 		raster.view.element = $('image-land');
 		if(raster.view.element != document.getElementById("image-land")) {
 			console.log(raster.view.element);
-			console.log("trigger")
+			console.log("it got put in the wrong element lol")
 			raster.remove();
 			raster = new Raster(event.target.result, center);
 			raster.visible = true;
 			raster.fitBounds(view.bounds);
-
 		}
 		imgRaster = raster;
-		// console.log(canvas[0])
-		// imgRasterMain = canvas[0].toDataURL();
 	}
-	// console.log(imgRasterMain);
 	reader.readAsDataURL(file);
-	// console.log(raster);
-	// console.log("register")
 }
 
 // var imageLand = $('#image-land');

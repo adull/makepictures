@@ -109,6 +109,9 @@ function onMouseDrag(event) {
     }
     brushPathImg = canvas[0].toDataURL();
   }
+  else if(imageMode) {
+    
+  }
 }
 
 function onMouseUp(event) {
