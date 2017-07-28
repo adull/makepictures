@@ -1,18 +1,23 @@
 //GLOBAL SHIT
 var currentColor = 'black'
-var startingPoint = "notinitialized";
 var defineBrush;
-var currentDefineBrush;
 
+//SHAPE SHIT
 var brushPathImg;
 var rect;
 var rectPath;
 var triangle;
 var circleRect;
 var circle;
+var imgRect;
+var imgRectPath;
+var imgRaster;
+var imgRasterMain;
 
 //modifiers
 var traceMod = false;
+var scaledImgMod = true;
+var fullImgMod = false;
 
 //MODE
 var defaultBrushMode = true;
@@ -20,18 +25,27 @@ var customBrushMode = false;
 var rectangleMode = false;
 var triangleMode = false;
 var circleMode = false;
+var imageMode = false;
 
-
+//COLOR PICKER SHIT
+var colorPickerOn = false;
+var colorPickerRed = false;
+var colorPickerGreen = false;
+var colorPickerBlue = false;
+var colorPickedRed;
+var colorPickedGreen;
+var colorPickedBlue;
 
 function setMode(shape) {
   defaultBrushMode = customBrushMode = rectangleMode = triangleMode =
   circleMode = false;
-  console.log(window[shape + "Mode"]);
+  // console.log(window[shape + "Mode"]);
   window[shape + "Mode"] = true;
-  console.log(shape);
+  // console.log(shape);
 }
 
 $(document).ready(function() {
+  $('#scaledImg-x').css("opacity", "1")
   $('.color-option').each(function() {
     var color = $(this)[0].id;
     $(this).css("background-color", color)
@@ -44,8 +58,9 @@ $(document).ready(function() {
     var shapeMode = idName.split("-").pop();
     setMode(shapeMode);
   })
+
+  //toggles
   $('.toggle-thing').on('click', function() {
-    console.log(($(this)[0].id));
     var id = ($(this)[0].id)
     var toggle = id.slice(7,id.length);
     console.log(toggle);
@@ -58,6 +73,18 @@ $(document).ready(function() {
       $("#" + toggle + "-x").css("opacity","0");
       window[toggle + "Mod"] = false;
     }
+  })
+  $('#scaledImg-x').on('click', function() {
+    scaledImgMod = true;
+    $("#scaledImg-x").css("opacity","1");
+    fullImgMod = false;
+    $("#fullImg-x").css("opacity","0");
+  })
+  $('#fullImg-x').on('click', function() {
+    scaledImgMod = false;
+    $("#scaledImg-x").css("opacity","0");
+    fullImgMod = true;
+    $("#fullImg-x").css("opacity","1");
   })
 
 

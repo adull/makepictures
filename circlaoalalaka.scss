@@ -163,7 +163,7 @@ html, body {
   display: flex;
 }
 
-.toggle-thing {
+.toggle-thing, .toggleImg-thing {
   position: relative;
   left: 5px;
   height: 12px;
@@ -177,4 +177,36 @@ html, body {
   transform: translateY(-50%);
   text-align: center;
   opacity: 0;
+}
+
+#color-picker {
+  position: absolute;
+  top: 450px;
+  width: 260px;
+  #color-picker-space {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+  }
+}
+
+#image-land {
+  position: absolute;
+  top: 560px;
+  left: 10px;
+  margin-bottom: 10px;
+  height: 500px;
+  width: 500px;
+  border: 2px solid black;
+}
+
+#image-controls {
+  position: absolute;
+  top: 995px;
+  left: 514px;
+
+}
+
+.image-toggle {
+  display:flex;
 }

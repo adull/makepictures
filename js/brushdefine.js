@@ -4,6 +4,9 @@ var canvas;
 var context;
 var groupNum;
 
+// rect = new Path.Rectangle(new Point(0,0), new Size(100,100))
+// rect.fillColor = 'black';
+
 $(".brush-define-wrapper").on('mouseenter', function() {
   bdt = "#brush-define-trash-" + groupNum;
   groupNum = ($(this)[0].id).slice(-1);
@@ -14,20 +17,11 @@ $(".brush-define-wrapper").on('mouseleave', function() {
 })
 $(".brush-define-trash").on('click', function() {
   groupNum = ($(this)[0].id.slice(-1));
-  console.log("b")
-  var thisCanvas = $("#brush-define-" + groupNum);
-  var thisContext = thisCanvas[0].getContext('2d');
-  // thisContext.clearRect(0,0, thisCanvas.width(), thisCanvas.height());
-  if(triangleMode) {
-    triangle = new Path.RegularPolygon(new Point(event.point.x, event.point.y), 3, 0);
-  }
   var elementId = project.view.element.id;
-  console.log(elementId.slice(-1));
   if(groupNum == elementId.slice(-1)) {
     project.activeLayer.removeChildren();
   }
-
-  brushPathImg = thisCanvas[0].toDataURL();
+  brushPathImg = canvas[0].toDataURL();
 });
 
 $(".brush-define").on('click', function() {
@@ -68,19 +62,14 @@ function onMouseDrag(event) {
   var canvas = $(this.view.element);
   if(rectangleMode) {
     if(traceMod == false) {
-      console.log(false)
-      console.log(traceMod)
       rectPath.removeSegments();
-    }
-    else {
-      console.log(true)
-      console.log(traceMod)
     }
     rect.width = event.point.x - startShapeX;
     rect.height = event.point.y - startShapeY;
     rectPath = new Path.Rectangle(rect)
     rectPath.strokeColor = currentColor;
     brushPathImg = canvas[0].toDataURL();
+    defineBrush = brushPathImg
   }
   else if(triangleMode) {
     if(traceMod == false) {
@@ -122,9 +111,12 @@ function onMouseDrag(event) {
   }
 }
 
+function onMouseUp(event) {
+  // console.log(brushPathImg)
+}
+
 function onKeyDown(event) {
   if(event.key == 'k') {
-    console.log(rectangleMode);
     if(defaultBrushMode || customBrushMode ) {
       defineBrush.fillColor = currentColor;
     }

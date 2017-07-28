@@ -11,8 +11,8 @@
     <script type="text/paperscript" canvas="brush-define-2" src="js/brushdefine.js"></script>
     <script type="text/paperscript" canvas="brush-define-3" src="js/brushdefine.js"></script>
     <script type="text/paperscript" canvas="brush-define-4" src="js/brushdefine.js"></script>
-    <!-- <script type="text/paperscript" canvas="brush-define-5" src="js/weirdbrushdefine.js"></script> -->
     <script type="text/paperscript" canvas="brush-define-5" src="js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="image-land" src="js/imageland.js"></script>
     <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
 </head>
 <body>
@@ -23,9 +23,9 @@
     <div class="make-shape" id="make-rectangle">RECTANGLE</div>
     <div class="make-shape" id="make-triangle">TRIANGLE</div>
     <div class="make-shape" id="make-circle">CIRCLE</div>
-
-
+    <div class="make-shape" id="make-image">IMAGE</div>
   </div>
+
   <div id="brush-define-text-1">CUSTOM BRUSHES</div>
   <div class="brush-define-wrapper" id="brush-define-wrapper-1">
     <canvas id="brush-define-1" class="brush-define" resize stats hidpi="off"></canvas>
@@ -74,7 +74,28 @@
     <div class="color-option" id="fuchsia"></div>
     <div class="color-option" id="purple"></div>
     <div class="color-option" id="black"></div>
-    <div class="color-option" id="gray"></div>
+    <div class="color-option" id="grey"></div>
     <div class="color-option" id="silver"></div>
+  </div>
+  <div id="color-picker">
+    COLOR PICKER: <span id="color-picker-space">CLICK TO START, SPACE TO STOP NUMBERS FROM INCREMENTING,YOU ARE PICKING THREE NUMBERS THAT CORRELATE TO RGB COLOR</span>
+  </div>
+  <canvas id="image-land">
+    <div id="import-image">DRAG A PICTURE HERE OR IMPORT IT <input type="file" id="fileUpload" onchange="fileChange()"></div>
+  </canvas>
+  <div id="image-controls">
+    <div class="image-toggle">
+      <div class="toggle-text">SCALED IMAGE</div>
+      <div id="toggle-scaledImg" class="toggleImg-thing">
+        <div id="scaledImg-x" class="toggle-x">&times;</div>
+      </div>
+    </div>
+    <div class="image-toggle">
+      <div class="toggle-text">FULL IMAGE</div>
+      <div id="toggle-fullImg" class="toggleImg-thing">
+        <div id="fullImg-x" class="toggle-x">&times;</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
