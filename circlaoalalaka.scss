@@ -190,11 +190,18 @@ html, body {
   }
 }
 
-#random-controls {
+#main-canv-controls {
   position: absolute;
   left: 270px;
   top: 363px;
-  // width: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+#cusotm-brushsshs-control {
+  position: absolute;
+  left: 670px;
+  top: 383px;
   display: flex;
   flex-direction: column;
 }

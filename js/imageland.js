@@ -9,6 +9,7 @@ var center = this.view.center;
 var dontPost = false;
 var raster;
 
+
 $("#image-land").on("mouseenter", function() {
 	canvas = $(this);
 })

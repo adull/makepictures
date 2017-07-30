@@ -30,6 +30,22 @@ $(".brush-define").on('click', function() {
   brushPathImg = canvas[0].toDataURL();
 })
 
+// 
+// $('#custBrushScale').on('mousedown', function() {
+//   canvas = $(this);
+//   $('#custBrushScale').on('mousemove', function() {
+//     console.log(this);
+//     // var cleanCanvas = new Path.Rectangle(0,0,this.)
+//     var scaleAmt = ($('#custBrushScale').val() * 0.02) + 0.01;
+//     console.log(brushPathImg);
+//     var scaleRast = new Raster(brushPathImg);
+//     scaleRast.position.x = scaleRast.width/2;
+//     scaleRast.position.y = scaleRast.height/2;
+//     scaleRast.scale(scaleAmt);
+//     brushPathImg = canvas[0].toDataURL();
+//   });
+// });
+
 
 function onMouseDown(event) {
   if(rectangleMode) {

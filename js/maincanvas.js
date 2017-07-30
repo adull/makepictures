@@ -3,10 +3,16 @@ var mainBrush;
 var startShapeX;
 var startShapeY;
 var group;
+var groupStartWidth;
+var groupStartHeight;
 
-$('#groupScale').on('change', function() {
-  var scaleAmt = $('#groupScale').val() * 0.02;
-  group.scale(scaleAmt);
+$('#groupScale').on('mousedown', function() {
+  $('#groupScale').on('mousemove', function() {
+    var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
+    console.log(scaleAmt)
+    group.bounds.width = (groupStartWidth * scaleAmt);
+    group.bounds.height = (groupStartHeight * scaleAmt);
+  });
 });
 
 function onMouseDown(event) {
@@ -146,6 +152,8 @@ function onMouseUp() {
       group.clipped = true;
     }
   }
+  groupStartWidth = group.bounds.width;
+  groupStartHeight = group.bounds.height;
 }
 
 function onKeyDown(event) {
