@@ -190,6 +190,15 @@ html, body {
   }
 }
 
+#random-controls {
+  position: absolute;
+  left: 270px;
+  top: 363px;
+  // width: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
 #image-land {
   position: absolute;
   top: 560px;

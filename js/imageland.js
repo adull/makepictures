@@ -18,15 +18,13 @@ function onDocumentDrag(event) {
 }
 
 function onDocumentDrop(event) {
+	var blankCanvas = new Path.Rectangle(0,0,$(this)[0].height, $(this)[0].width);
+	blankCanvas.fillColor = 'white';
 	if(canvas) {
-		console.log("yes")
 		var context = canvas[0].getContext('2d');
-		// context.clearRect(0, 0, canvas.width, canvas.height);
 		var rect = new Path.Rectangle(0,0,canvas.height, canvas.width);
 		rect.fillColor = 'red';
-		console.log(rect);
 	}
-	console.log(canvas);
 	event.preventDefault();
 	var file = event.dataTransfer.files[0];
 	var reader = new FileReader();
@@ -36,8 +34,6 @@ function onDocumentDrop(event) {
 		raster.fitBounds(view.bounds);
 		raster.view.element = $('image-land');
 		if(raster.view.element != document.getElementById("image-land")) {
-			console.log(raster.view.element);
-			console.log("it got put in the wrong element lol")
 			raster.remove();
 			raster = new Raster(event.target.result, center);
 			raster.visible = true;

@@ -4,7 +4,10 @@ var startShapeX;
 var startShapeY;
 var group;
 
-
+$('#groupScale').on('change', function() {
+  var scaleAmt = $('#groupScale').val() * 0.02;
+  group.scale(scaleAmt);
+});
 
 function onMouseDown(event) {
   group = new Group();
@@ -47,7 +50,6 @@ function onMouseDown(event) {
     group.addChild(circle)
   }
   else if(imageMode) {
-    // rectPath =
     startShapeX = event.point.x;
     startShapeY = event.point.y;
     imgRect = new Rectangle(event.point.x, event.point.y, 0, 0);
@@ -110,9 +112,7 @@ function onMouseDrag(event) {
     group.bringToFront;
   }
   else if(imageMode) {
-    // if(traceMod == false) {
-      imgRectPath.removeSegments();
-    // }
+    imgRectPath.removeSegments();
     imgRect.width = event.point.x - startShapeX;
     imgRect.height = event.point.y - startShapeY;
     imgRectPath = new Path.Rectangle(imgRect);
@@ -125,8 +125,6 @@ function onMouseDrag(event) {
 
 function onMouseUp() {
   if(imageMode) {
-    // console.log("ITS IMAGE MODE BABY")
-    // group.removeChildren()
     if(!imgRaster) {
       imgRectPath.remove();
     }
@@ -135,7 +133,6 @@ function onMouseUp() {
       heightRatio = imgRectPath.bounds.height/imgRaster.bounds.height;
 
       var imagePoint = new Point(startShapeX, startShapeY);
-      // console.log(imgRectPath);
       var raster = new Raster(imgRaster.source, imgRectPath.bounds.center);
       raster.scale(widthRatio, heightRatio);
       group.addChild(raster)
@@ -147,8 +144,6 @@ function onMouseUp() {
       var raster = new Raster(imgRaster.source, imagePoint);
       group = new Group(imgRectPath, raster);
       group.clipped = true;
-      console.log(group);
-      // imgRectPath.remove();
     }
   }
 }

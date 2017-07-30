@@ -56,6 +56,13 @@ function onMouseDown(event) {
     circleRect = new Rectangle(new Point(startShapeX, startShapeY), new Size(0, 0));
     circle = new Shape.Ellipse(circleRect);
   }
+  else if(imageMode) {
+    startShapeX = event.point.x;
+    startShapeY = event.point.y;
+    imgRect = new Rectangle(event.point.x, event.point.y, 0, 0);
+    imgRectPath = new Path.Rectangle(rect)
+    // group.addChild(imgRectPath);
+  }
 }
 
 function onMouseDrag(event) {
@@ -110,12 +117,45 @@ function onMouseDrag(event) {
     brushPathImg = canvas[0].toDataURL();
   }
   else if(imageMode) {
-    
+    imgRectPath.removeSegments();
+    imgRect.width = event.point.x - startShapeX;
+    imgRect.height = event.point.y - startShapeY;
+    imgRectPath = new Path.Rectangle(imgRect);
+    imgRectPath.strokeColor = 'black';
+    imgRectPath.fillColor = 'rgba(0,0,0, .3)'
+    // group.addChild(imgRectPath);
   }
 }
 
 function onMouseUp(event) {
-  // console.log(brushPathImg)
+  var canvas = $(this.view.element);
+
+  if(imageMode) {
+    if(!imgRaster) {
+      imgRectPath.remove();
+    }
+    if(scaledImgMod && imgRaster) {
+      widthRatio = imgRectPath.bounds.width/imgRaster.bounds.width;
+      heightRatio = imgRectPath.bounds.height/imgRaster.bounds.height;
+
+      var imagePoint = new Point(startShapeX, startShapeY);
+      var raster = new Raster(imgRaster.source, imgRectPath.bounds.center);
+      raster.scale(widthRatio, heightRatio);
+      // group.addChild(raster)
+      imgRectPath.remove();
+    }
+    if(fullImgMod && imgRaster) {
+      var imagePoint = new Point(startShapeX, startShapeY);
+      console.log(imgRectPath);
+      var raster = new Raster(imgRaster.source, imagePoint);
+      group = new Group(imgRectPath, raster);
+      group.clipped = true;
+    }
+  }
+  setTimeout(function() {
+    brushPathImg = canvas[0].toDataURL();
+  },100)
+
 }
 
 function onKeyDown(event) {

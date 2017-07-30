@@ -84,5 +84,4 @@ $(document).ready(function() {
     $("#fullImg-x").css("opacity","1");
   })
 
-
 })
