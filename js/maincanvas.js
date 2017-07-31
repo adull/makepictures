@@ -5,28 +5,36 @@ var startShapeY;
 var group;
 var groupStartWidth;
 var groupStartHeight;
-var rotateAmt;
+var groupStartRotation;
+var rotateAmt = 0;
+var lockScale = true;
+// var rotateVal;
 
 $('#groupScale').on('mousedown', function() {
+  lockScale = false;
   $('#groupScale').on('mousemove', function() {
-    console.log("scale triggering")
-    var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
-    group.bounds.width = (groupStartWidth * scaleAmt);
-    group.bounds.height = (groupStartHeight * scaleAmt);
+    if(!lockScale) {
+      console.log("trigger scale");
+      var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
+      group.bounds.width = (groupStartWidth * scaleAmt);
+      group.bounds.height = (groupStartHeight * scaleAmt);
+    }
   });
 });
 
-// $('#groupRotate').on('mousedown', function() {
-//   $('#groupRotate').on('mousemove', function() {
-//     console.log("rotate triggering")
-//     group.rotate(rotateAmt * -1);
-//     rotateAmt = $('#groupRotate').val();
-//     group.rotate(rotateAmt);
-//   });
-// });
+$('#groupRotate').on('mousedown', function() {
+  lockScale = true;
+  $('#groupRotate').on('mousemove', function() {
+    var rotateVal = $('#groupRotate').val() -rotateAmt;
+    group.rotation = rotateVal;
+    rotateAmt = $('#groupRotate').val();
+  });
+});
 
 function onMouseDown(event) {
   group = new Group();
+  // scaleAmt = 0;
+  rotateAmt = 0;
   if(customBrushMode) {
     if(defineBrush) {
       setTimeout(function() {
@@ -140,7 +148,8 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp() {
-  $('#groupScale').val('50')
+  $('#groupScale').val('50');
+  $('#groupRotate').val('0');
   // $('#groupRotate').val('0');
   if(imageMode) {
     if(!imgRaster) {
@@ -166,6 +175,7 @@ function onMouseUp() {
   }
   groupStartWidth = group.bounds.width;
   groupStartHeight = group.bounds.height;
+  groupStartRotation = group.rotation;
 }
 
 function onKeyDown(event) {

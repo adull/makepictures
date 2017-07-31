@@ -31,15 +31,14 @@ $(".brush-define").on('click', function() {
   canvas = $(this);
   context = canvas[0].getContext('2d');
   brushPathImg = canvas[0].toDataURL();
-  $('.custBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
+  $('.customBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
 })
 
 
-$('.custBrushScale').on('mousedown', function() {
-  $('.custBrushScale').on('mousemove', function() {
+$('.customBrushScale').on('mousedown', function() {
+  $('.customBrushScale').on('mousemove', function() {
     groupNum = ($(this)[0].id.slice(-1));
-    console.log(project.activeLayer)
-    var scaleAmt = ($('.custBrushScale').val() * 0.02) + 0.01;
+    var scaleAmt = ($('.customBrushScale').val() * 0.02) + 0.01;
     // project.activeLayer.scale(scaleAmt);
     var elementId = project.view.element.id;
     if(groupNum == elementId.slice(-1)) {
@@ -149,7 +148,7 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp(event) {
-  $('.custBrushScale').val('50')
+  $('.customBrushScale').val('50')
   layerStartWidth = project.activeLayer.bounds.width;
   layerStartHeight = project.activeLayer.bounds.height;
   var canvas = $(this.view.element);
@@ -170,7 +169,6 @@ function onMouseUp(event) {
     }
     if(fullImgMod && imgRaster) {
       var imagePoint = new Point(startShapeX, startShapeY);
-      console.log(imgRectPath);
       var raster = new Raster(imgRaster.source, imagePoint);
       group = new Group(imgRectPath, raster);
       group.clipped = true;
