@@ -83,10 +83,12 @@
   <div id="main-canv-controls">
     SCALE LAST IN MAIN CANVAS^^^
     <input type="range" id="groupScale" value="50" />
+    ROTATE
+    <input type="range" id="groupRotate" min="-180" max="180" />
   </div>
   <div id="cusotm-brushsshs-control">
     SCALE CUSTOM BRUSHES
-    <input type="range" id="custBrushScale" value="50" />
+    <input type="range" class="custBrushScale" value="50" />
   </div>
   <canvas id="image-land">
     <div id="import-image">DRAG A PICTURE HERE OR IMPORT IT <input type="file" id="fileUpload" onchange="fileChange()"></div>

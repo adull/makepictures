@@ -3,6 +3,9 @@
 var canvas;
 var context;
 var groupNum;
+var group;
+var layerStartWidth;
+var layerStartHeight;
 
 // rect = new Path.Rectangle(new Point(0,0), new Size(100,100))
 // rect.fillColor = 'black';
@@ -28,23 +31,25 @@ $(".brush-define").on('click', function() {
   canvas = $(this);
   context = canvas[0].getContext('2d');
   brushPathImg = canvas[0].toDataURL();
+  $('.custBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
 })
 
-// 
-// $('#custBrushScale').on('mousedown', function() {
-//   canvas = $(this);
-//   $('#custBrushScale').on('mousemove', function() {
-//     console.log(this);
-//     // var cleanCanvas = new Path.Rectangle(0,0,this.)
-//     var scaleAmt = ($('#custBrushScale').val() * 0.02) + 0.01;
-//     console.log(brushPathImg);
-//     var scaleRast = new Raster(brushPathImg);
-//     scaleRast.position.x = scaleRast.width/2;
-//     scaleRast.position.y = scaleRast.height/2;
-//     scaleRast.scale(scaleAmt);
-//     brushPathImg = canvas[0].toDataURL();
-//   });
-// });
+
+$('.custBrushScale').on('mousedown', function() {
+  $('.custBrushScale').on('mousemove', function() {
+    groupNum = ($(this)[0].id.slice(-1));
+    console.log(project.activeLayer)
+    var scaleAmt = ($('.custBrushScale').val() * 0.02) + 0.01;
+    // project.activeLayer.scale(scaleAmt);
+    var elementId = project.view.element.id;
+    if(groupNum == elementId.slice(-1)) {
+      project.activeLayer.bounds.width = (layerStartWidth * scaleAmt);
+      project.activeLayer.bounds.height = (layerStartHeight * scaleAmt);
+    }
+    canvas = $("#brush-define-" + groupNum);
+    brushPathImg = canvas[0].toDataURL();
+  });
+});
 
 
 function onMouseDown(event) {
@@ -144,6 +149,9 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp(event) {
+  $('.custBrushScale').val('50')
+  layerStartWidth = project.activeLayer.bounds.width;
+  layerStartHeight = project.activeLayer.bounds.height;
   var canvas = $(this.view.element);
 
   if(imageMode) {

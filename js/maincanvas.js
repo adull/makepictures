@@ -5,15 +5,25 @@ var startShapeY;
 var group;
 var groupStartWidth;
 var groupStartHeight;
+var rotateAmt;
 
 $('#groupScale').on('mousedown', function() {
   $('#groupScale').on('mousemove', function() {
+    console.log("scale triggering")
     var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
-    console.log(scaleAmt)
     group.bounds.width = (groupStartWidth * scaleAmt);
     group.bounds.height = (groupStartHeight * scaleAmt);
   });
 });
+
+// $('#groupRotate').on('mousedown', function() {
+//   $('#groupRotate').on('mousemove', function() {
+//     console.log("rotate triggering")
+//     group.rotate(rotateAmt * -1);
+//     rotateAmt = $('#groupRotate').val();
+//     group.rotate(rotateAmt);
+//   });
+// });
 
 function onMouseDown(event) {
   group = new Group();
@@ -130,6 +140,8 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp() {
+  $('#groupScale').val('50')
+  // $('#groupRotate').val('0');
   if(imageMode) {
     if(!imgRaster) {
       imgRectPath.remove();
