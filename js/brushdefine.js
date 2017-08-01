@@ -6,6 +6,7 @@ var groupNum;
 var group;
 var layerStartWidth;
 var layerStartHeight;
+var rotateAmt = 0;
 
 // rect = new Path.Rectangle(new Point(0,0), new Size(100,100))
 // rect.fillColor = 'black';
@@ -29,6 +30,7 @@ $(".brush-define-trash").on('click', function() {
 
 $(".brush-define").on('click', function() {
   canvas = $(this);
+  console.log(canvas);
   context = canvas[0].getContext('2d');
   brushPathImg = canvas[0].toDataURL();
   $('.customBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
@@ -36,19 +38,38 @@ $(".brush-define").on('click', function() {
 
 
 $('.customBrushScale').on('mousedown', function() {
+  lockScale = false;
   $('.customBrushScale').on('mousemove', function() {
-    groupNum = ($(this)[0].id.slice(-1));
-    var scaleAmt = ($('.customBrushScale').val() * 0.02) + 0.01;
-    // project.activeLayer.scale(scaleAmt);
+    if(!lockScale) {
+      groupNum = ($(this)[0].id.slice(-1));
+      var scaleAmt = ($('.customBrushScale').val() * 0.02) + 0.01;
+      var elementId = project.view.element.id;
+      if(groupNum == elementId.slice(-1)) {
+        project.activeLayer.bounds.width = (layerStartWidth * scaleAmt);
+        project.activeLayer.bounds.height = (layerStartHeight * scaleAmt);
+      }
+      canvas = $("#brush-define-" + groupNum);
+      brushPathImg = canvas[0].toDataURL();
+    }
+  });
+});
+
+$('.customBrushRotate').on('mousedown', function() {
+  lockScale = true;
+  $('.customBrushRotate').on('mousemove', function() {
+    // groupNum = ($(this)[0].id.slice(-1));
+    // console.log($(this));
+    console.log(groupNum);
     var elementId = project.view.element.id;
     if(groupNum == elementId.slice(-1)) {
-      project.activeLayer.bounds.width = (layerStartWidth * scaleAmt);
-      project.activeLayer.bounds.height = (layerStartHeight * scaleAmt);
+      var rotateVal = $('.customBrushRotate').val() - rotateAmt;
+      project.activeLayer.rotation = rotateVal;
+      rotateAmt = $('.customBrushRotate').val();
     }
     canvas = $("#brush-define-" + groupNum);
     brushPathImg = canvas[0].toDataURL();
-  });
-});
+  })
+})
 
 
 function onMouseDown(event) {

@@ -8,13 +8,15 @@ var groupStartHeight;
 var groupStartRotation;
 var rotateAmt = 0;
 var lockScale = true;
-// var rotateVal;
+var lockRotate = true;
 
 $('#groupScale').on('mousedown', function() {
   lockScale = false;
+  lockRotate = true;
+  console.log("rotate is locked")
   $('#groupScale').on('mousemove', function() {
     if(!lockScale) {
-      console.log("trigger scale");
+      // console.log("trigger scale");
       var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
       group.bounds.width = (groupStartWidth * scaleAmt);
       group.bounds.height = (groupStartHeight * scaleAmt);
@@ -24,6 +26,8 @@ $('#groupScale').on('mousedown', function() {
 
 $('#groupRotate').on('mousedown', function() {
   lockScale = true;
+  lockRotate = false;
+  console.log("rotate is not locked")
   $('#groupRotate').on('mousemove', function() {
     var rotateVal = $('#groupRotate').val() -rotateAmt;
     group.rotation = rotateVal;
@@ -167,7 +171,7 @@ function onMouseUp() {
     }
     if(fullImgMod && imgRaster) {
       var imagePoint = new Point(startShapeX, startShapeY);
-      console.log(imgRectPath);
+      // console.log(imgRectPath);
       var raster = new Raster(imgRaster.source, imagePoint);
       group = new Group(imgRectPath, raster);
       group.clipped = true;
