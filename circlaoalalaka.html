@@ -16,7 +16,7 @@
     <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
 </head>
 <body>
-  <canvas id="main-canvas" resize stats hidpi="off"></canvas>
+  <canvas id="main-canvas" resize stats hidpi="off" resize></canvas>
   <div id="make-shapes">
     <div class="make-shape" id="make-defaultBrush">DEFAULT BRUSH</div>
     <div class="make-shape" id="make-customBrush">CUSTOM BRUSH</div>
@@ -85,14 +85,18 @@
     <input type="range" id="groupScale" value="50" />
     ROTATE
     <input type="range" id="groupRotate" min="-180" max="180" />
+    SKEW
+    <input type="range" id="groupSkew" min="-100" max="100" />
   </div>
   <div id="cusotm-brushsshs-control">
     SCALE CUSTOM BRUSHES
     <input type="range" class="customBrushScale" value="50" />
     ROTATE
     <input type="range" class="customBrushRotate" min="-180" max="180" />
+    SKEW
+    <input type="range" class="customBrushSkew" min="-100" max="100" />
   </div>
-  <div id="import-image">DRAG AN IMAGE TO CANVAS BELOW OR IMPORT IT HERE> <input type="file" id="fileUpload" onchange="fileChange()"></div>
+  <div id="import-image">IMPORT IMAGE <input type="file" id="fileUpload" accept=".jpg, .jpeg, .png"></div>
   <canvas id="image-land"></canvas>
   <div id="image-controls">
     <div class="image-toggle">

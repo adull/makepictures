@@ -76,12 +76,11 @@ $(document).ready(function() {
     $("#scaledImg-x").css("opacity","1");
     fullImgMod = false;
     $("#fullImg-x").css("opacity","0");
-  })
+  });
   $('#fullImg-x').on('click', function() {
     scaledImgMod = false;
     $("#scaledImg-x").css("opacity","0");
     fullImgMod = true;
     $("#fullImg-x").css("opacity","1");
-  })
-
-})
+  });
+});

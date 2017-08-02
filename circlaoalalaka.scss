@@ -211,21 +211,13 @@ html, body {
   top: 548px;
 }
 
-#image-land {
-  position: absolute;
-  top: 560px;
-  left: 10px;
-  margin-bottom: 10px;
-  height: 500px;
-  width: 500px;
-  border: 2px solid black;
-}
-
 #image-controls {
   position: absolute;
-  top: 995px;
-  left: 514px;
+  top: 563px;
+}
 
+#image-land {
+  display: none;
 }
 
 .image-toggle {

@@ -7,33 +7,61 @@ var groupStartWidth;
 var groupStartHeight;
 var groupStartRotation;
 var rotateAmt = 0;
+var skewAmt = 0;
+
 var lockScale = true;
 var lockRotate = true;
+var lockSkew = true;
+
+// function fileChange() {
+//   console.log("k")
+// }
 
 $('#groupScale').on('mousedown', function() {
   lockScale = false;
-  lockRotate = true;
-  console.log("rotate is locked")
   $('#groupScale').on('mousemove', function() {
     if(!lockScale) {
-      // console.log("trigger scale");
       var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
       group.bounds.width = (groupStartWidth * scaleAmt);
       group.bounds.height = (groupStartHeight * scaleAmt);
     }
   });
 });
+$('#groupScale').on('mouseup', function() {
+  lockScale = true;
+});
 
 $('#groupRotate').on('mousedown', function() {
-  lockScale = true;
   lockRotate = false;
-  console.log("rotate is not locked")
   $('#groupRotate').on('mousemove', function() {
-    var rotateVal = $('#groupRotate').val() -rotateAmt;
-    group.rotation = rotateVal;
-    rotateAmt = $('#groupRotate').val();
+    if(!lockRotate) {
+      var rotateVal = $('#groupRotate').val() -rotateAmt;
+      group.rotation = rotateVal;
+      rotateAmt = $('#groupRotate').val();
+    }
   });
 });
+$('#groupRotate').on('mouseup', function() {
+  lockRotate = true;
+});
+
+$('#groupSkew').on('mousedown', function() {
+  var center = group.bounds.center;
+  lockSkew= false;
+  $('#groupSkew').on('mousemove', function() {
+    console.log("a");
+    var skewVal = $('#groupSkew').val() - skewAmt;
+    // console.log(group)
+    if(!lockSkew) {
+      group.skew(skewVal, center);
+    }
+    skewAmt = $('#groupSkew').val();
+  });
+});
+$('#groupSkew').on('mouseup', function() {;
+  lockSkew = true;
+});
+
 
 function onMouseDown(event) {
   group = new Group();
@@ -152,14 +180,18 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp() {
+  lockSkew = true;
   $('#groupScale').val('50');
   $('#groupRotate').val('0');
+  $('#groupSkew').val('0');
   // $('#groupRotate').val('0');
   if(imageMode) {
     if(!imgRaster) {
       imgRectPath.remove();
     }
     if(scaledImgMod && imgRaster) {
+
+      console.log(imgRaster);
       widthRatio = imgRectPath.bounds.width/imgRaster.bounds.width;
       heightRatio = imgRectPath.bounds.height/imgRaster.bounds.height;
 

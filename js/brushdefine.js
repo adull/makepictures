@@ -7,6 +7,11 @@ var group;
 var layerStartWidth;
 var layerStartHeight;
 var rotateAmt = 0;
+var skewAmt = 0;
+
+var lockCustomScale = true;
+var lockCustomRotate = true;
+var lockCustomSkew = true;
 
 // rect = new Path.Rectangle(new Point(0,0), new Size(100,100))
 // rect.fillColor = 'black';
@@ -34,6 +39,8 @@ $(".brush-define").on('click', function() {
   context = canvas[0].getContext('2d');
   brushPathImg = canvas[0].toDataURL();
   $('.customBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
+  $('.customBrushRotate')[0].id = "scale-" + $(this)[0].id.slice(-1);
+  $('.customBrushSkew')[0].id = "scale-" + $(this)[0].id.slice(-1);
 })
 
 
@@ -53,21 +60,45 @@ $('.customBrushScale').on('mousedown', function() {
     }
   });
 });
+$('.customBrushScale').on('mouseup', function() {
+  lockScale = true;
+});
 
 $('.customBrushRotate').on('mousedown', function() {
-  lockScale = true;
+  lockRotate = false;
   $('.customBrushRotate').on('mousemove', function() {
-    // groupNum = ($(this)[0].id.slice(-1));
-    // console.log($(this));
-    console.log(groupNum);
+    groupNum = ($(this)[0].id.slice(-1));
     var elementId = project.view.element.id;
     if(groupNum == elementId.slice(-1)) {
-      var rotateVal = $('.customBrushRotate').val() - rotateAmt;
-      project.activeLayer.rotation = rotateVal;
-      rotateAmt = $('.customBrushRotate').val();
+      if(!lockRotate) {
+        var rotateVal = $('.customBrushRotate').val() - rotateAmt;
+        project.activeLayer.rotation = rotateVal;
+        rotateAmt = $('.customBrushRotate').val();
+      }
     }
     canvas = $("#brush-define-" + groupNum);
     brushPathImg = canvas[0].toDataURL();
+  });
+});
+$('.customBrushScale').on('mouseup', function() {
+  lockRotate = true;
+});
+
+$('.customBrushSkew').on('mousedown', function() {
+  console.log("hmm")
+  lockSkew = false;
+  $('.customBrushSkew').on('mousemove', function() {
+    groupNum = ($(this)[0].id.slice(-1));
+
+    var elementId = project.view.element.id;
+    if(groupNum == elementId.slice(-1)) {
+      if(!lockSkew) {
+        var skewVal = $('.customBrushSkew').val() - skewAmt;
+        console.log(project.activeLayer);
+        // project.activeLayer.
+        //TODO I STOPPED HERE
+      }
+    }
   })
 })
 
@@ -169,7 +200,9 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp(event) {
-  $('.customBrushScale').val('50')
+  lockRotate = true;
+  $('.customBrushScale').val('50');
+  $('.customBrushRotate').val('0');
   layerStartWidth = project.activeLayer.bounds.width;
   layerStartHeight = project.activeLayer.bounds.height;
   var canvas = $(this.view.element);
