@@ -223,3 +223,30 @@ html, body {
 .image-toggle {
   display:flex;
 }
+
+#webcam-canvas {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  top: 615px;
+  left: 2px;
+  border: 2px solid black;
+}
+
+.camera {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  top: 615px;
+  left: 152px;
+  #webcam-video {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+#webcam-controls {
+  position: absolute;
+  top: 613px;
+  left: 5px;
+}

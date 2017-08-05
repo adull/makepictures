@@ -6,6 +6,8 @@ var groupNum;
 var group;
 var layerStartWidth;
 var layerStartHeight;
+
+var scaleAmt = 0;
 var rotateAmt = 0;
 var skewAmt = 0;
 
@@ -35,7 +37,6 @@ $(".brush-define-trash").on('click', function() {
 
 $(".brush-define").on('click', function() {
   canvas = $(this);
-  console.log(canvas);
   context = canvas[0].getContext('2d');
   brushPathImg = canvas[0].toDataURL();
   $('.customBrushScale')[0].id = "scale-" + $(this)[0].id.slice(-1);
@@ -48,12 +49,15 @@ $('.customBrushScale').on('mousedown', function() {
   lockScale = false;
   $('.customBrushScale').on('mousemove', function() {
     if(!lockScale) {
+      console.log('scale is goin')
       groupNum = ($(this)[0].id.slice(-1));
-      var scaleAmt = ($('.customBrushScale').val() * 0.02) + 0.01;
+
       var elementId = project.view.element.id;
       if(groupNum == elementId.slice(-1)) {
-        project.activeLayer.bounds.width = (layerStartWidth * scaleAmt);
-        project.activeLayer.bounds.height = (layerStartHeight * scaleAmt);
+        var scaleVal = 1 + ($('.customBrushScale').val() * 0.02 + 0.01) - scaleAmt;
+        project.activeLayer.scale(scaleVal)
+        scaleAmt = ($('.customBrushScale').val() * 0.02) + 0.01;
+
       }
       canvas = $("#brush-define-" + groupNum);
       brushPathImg = canvas[0].toDataURL();
@@ -71,6 +75,7 @@ $('.customBrushRotate').on('mousedown', function() {
     var elementId = project.view.element.id;
     if(groupNum == elementId.slice(-1)) {
       if(!lockRotate) {
+        console.log('rotate is goin')
         var rotateVal = $('.customBrushRotate').val() - rotateAmt;
         project.activeLayer.rotation = rotateVal;
         rotateAmt = $('.customBrushRotate').val();
@@ -85,7 +90,6 @@ $('.customBrushScale').on('mouseup', function() {
 });
 
 $('.customBrushSkew').on('mousedown', function() {
-  console.log("hmm")
   lockSkew = false;
   $('.customBrushSkew').on('mousemove', function() {
     groupNum = ($(this)[0].id.slice(-1));
@@ -93,17 +97,23 @@ $('.customBrushSkew').on('mousedown', function() {
     var elementId = project.view.element.id;
     if(groupNum == elementId.slice(-1)) {
       if(!lockSkew) {
+        console.log('skew is goin')
         var skewVal = $('.customBrushSkew').val() - skewAmt;
-        console.log(project.activeLayer);
+        project.activeLayer.skew(skewVal);
+        skewAmt = $('.customBrushSkew').val();
         // project.activeLayer.
-        //TODO I STOPPED HERE
       }
     }
+    canvas = $("#brush-define-" + groupNum);
+    brushPathImg = canvas[0].toDataURL();
   })
 })
 
 
 function onMouseDown(event) {
+  canvas = this.view.element.id
+  canvas = $("#" + canvas);
+  // canvas = $(this.view.element);
   if(rectangleMode) {
     startShapeX = event.point.x;
     startShapeY = event.point.y;
@@ -138,6 +148,7 @@ function onMouseDown(event) {
 }
 
 function onMouseDrag(event) {
+  // var canvas = $(this.view.element);
   var canvas = $(this.view.element);
   if(rectangleMode) {
     if(traceMod == false) {
@@ -200,12 +211,17 @@ function onMouseDrag(event) {
 }
 
 function onMouseUp(event) {
+  lockScale = true;
   lockRotate = true;
+  lockSkew = true;
+
   $('.customBrushScale').val('50');
   $('.customBrushRotate').val('0');
+  $('.customBrushSkew').val('0');
   layerStartWidth = project.activeLayer.bounds.width;
   layerStartHeight = project.activeLayer.bounds.height;
-  var canvas = $(this.view.element);
+  // var canvas = $(this.view.element);
+  // console.log(canvas)
 
   if(imageMode) {
     if(!imgRaster) {
@@ -229,6 +245,7 @@ function onMouseUp(event) {
     }
   }
   setTimeout(function() {
+    console.log(canvas)
     brushPathImg = canvas[0].toDataURL();
   },100)
 

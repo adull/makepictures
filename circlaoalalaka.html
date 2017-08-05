@@ -14,6 +14,7 @@
     <script type="text/paperscript" canvas="brush-define-5" src="js/brushdefine.js"></script>
     <script type="text/paperscript" canvas="image-land" src="js/imageland.js"></script>
     <script type="text/paperscript" canvas="main-canvas" src="js/maincanvas.js"></script>
+    <script type="text/paperscript" canvas="webcam-canvas" src ="js/webcam.js"></script>
 </head>
 <body>
   <canvas id="main-canvas" resize stats hidpi="off" resize></canvas>
@@ -112,5 +113,17 @@
       </div>
     </div>
   </div>
+  <canvas id="webcam-canvas">
+  </canvas>
+  <div class="camera">
+    <video id="webcam-video"></video>
+  </div>
+  <div id="webcam-controls">
+    <button id="webcam-enable">ENABLE WEBCAM</button>
+    <button id="webcam-disable">DISABLE WEBCAM</button>
+    <button id="webcam-startbutton">SET AS CURRENT IMAGE</button>
+  </div>
+
+
 </body>
 </html>

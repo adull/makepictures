@@ -13,14 +13,11 @@ var lockScale = true;
 var lockRotate = true;
 var lockSkew = true;
 
-// function fileChange() {
-//   console.log("k")
-// }
-
 $('#groupScale').on('mousedown', function() {
   lockScale = false;
   $('#groupScale').on('mousemove', function() {
     if(!lockScale) {
+      console.log('scale is goin')
       var scaleAmt = ($('#groupScale').val() * 0.02) + 0.01;
       group.bounds.width = (groupStartWidth * scaleAmt);
       group.bounds.height = (groupStartHeight * scaleAmt);
@@ -35,6 +32,7 @@ $('#groupRotate').on('mousedown', function() {
   lockRotate = false;
   $('#groupRotate').on('mousemove', function() {
     if(!lockRotate) {
+      console.log('rotate is goin')
       var rotateVal = $('#groupRotate').val() -rotateAmt;
       group.rotation = rotateVal;
       rotateAmt = $('#groupRotate').val();
@@ -49,10 +47,9 @@ $('#groupSkew').on('mousedown', function() {
   var center = group.bounds.center;
   lockSkew= false;
   $('#groupSkew').on('mousemove', function() {
-    console.log("a");
     var skewVal = $('#groupSkew').val() - skewAmt;
-    // console.log(group)
     if(!lockSkew) {
+      console.log('skew is goin')
       group.skew(skewVal, center);
     }
     skewAmt = $('#groupSkew').val();
