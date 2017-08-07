@@ -118,12 +118,17 @@ function onMouseDown(event) {
     group.addChild(imgRectPath);
   }
   else if(textMode) {
-    console.log("we out h")
-    var text = new PointText(new Point(200, 50));
-    text.justification = 'left';
+    var text = new PointText(new Point(event.point));
+    text.fontSize = textSize
     text.fillColor = currentColor;
     text.fontFamily = textFamily;
-    text.content = textVal;
+    if(textFamily == "badcoma") {
+      text.content = textVal.toUpperCase();
+    }
+    else {
+      text.content = textVal;
+    }
+    group.addChild(text);
   }
 }
 
@@ -195,6 +200,20 @@ function onMouseDrag(event) {
     imgRectPath.fillColor = 'rgba(0,0,0, .3)'
     group.addChild(imgRectPath);
   }
+  else if(textMode) {
+    var text = new PointText(new Point(event.point));
+    text.fontSize = textSize
+    text.fillColor = currentColor;
+    text.fontFamily = textFamily;
+    if(textFamily == "badcoma") {
+      text.content = textVal.toUpperCase();
+    }
+    else {
+      text.content = textVal;
+    }
+    group.addChild(text);
+  }
+
 
 }
 

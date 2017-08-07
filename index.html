@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IDK</title>
+    <link rel="stylesheet" href="assets/css/fonts.min.css">
+    <link rel="stylesheet" href="assets/css/index.min.css">
+    <script type="text/javascript" src="assets/js/paper-full.js"></script>
+    <script type="text/javascript"  src="assets/js/jquery.3.1.1.min.js"></script>
+    <script src="assets/js/circlaoalalaka.js"></script>
+    <script type="text/paperscript" canvas="custom-brush-1" src="assets/js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="custom-brush-2" src="assets/js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="custom-brush-3" src="assets/js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="custom-brush-4" src="assets/js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="custom-brush-5" src="assets/js/brushdefine.js"></script>
+    <script type="text/paperscript" canvas="image-land" src="assets/js/imageland.js"></script>
+    <script type="text/paperscript" canvas="main-canvas" src="assets/js/maincanvas.js"></script>
+    <script type="text/paperscript" canvas="webcam-canvas" src ="assets/js/webcam.js"></script>
+</head>
+<body>
+  <div class="body-container" id="main-canvas-container">
+    <canvas id="main-canvas" resize stats hidpi="off" resize></canvas>
+    <div id="global-section">
+      GLOBAL SHIT
+      <div id="colors">
+        <div class="color-option" id="navy"></div>
+        <div class="color-option" id="blue"></div>
+        <div class="color-option" id="white"></div>
+        <div class="color-option" id="teal"></div>
+        <div class="color-option" id="olive"></div>
+        <div class="color-option" id="green"></div>
+        <div class="color-option" id="lime"></div>
+        <div class="color-option" id="yellow"></div>
+        <div class="color-option" id="orange"></div>
+        <div class="color-option" id="red"></div>
+        <div class="color-option" id="maroon"></div>
+        <div class="color-option" id="fuchsia"></div>
+        <div class="color-option" id="purple"></div>
+        <div class="color-option" id="black"></div>
+        <div class="color-option" id="grey"></div>
+        <div class="color-option" id="silver"></div>
+      </div>
+      <div id="trace-toggle">
+        <div class="toggle-text">TOGGLE TRACE</div>
+        <div id="toggle-trace" class="toggle-thing">
+          <div id="trace-x" class="toggle-x">&times;</div>
+        </div>
+      </div>
+      LINE THICKNESS
+      <input type="range" value="1" min="1" max="40" id="line-thickness"/>
+    </div>
+
+
+
+    <div id="main-canv-controls">
+      SCALE LAST IN MAIN CANVAS^^^
+      <input type="range" id="group-scale" value="50" />
+      ROTATE
+      <input type="range" id="group-rotate" min="-180" max="180" />
+      SKEW
+      <input type="range" id="group-skew" min="-100" max="100" />
+    </div>
+
+    <div id="make-shapes-container">
+      <div class="make-shape" id="make-defaultBrush">DEFAULT BRUSH</div>
+      <div class="make-shape" id="make-customBrush">CUSTOM BRUSH</div>
+      <div class="make-shape" id="make-rectangle">RECTANGLE</div>
+      <div class="make-shape" id="make-triangle">TRIANGLE</div>
+      <div class="make-shape" id="make-circle">CIRCLE</div>
+      <div class="make-shape" id="make-image">IMAGE</div>
+      <div class="make-shape" id="make-text">TEXT</div>
+    </div>
+
+  </div>
+  <div class="body-container" id="custom-brush-small-container">
+    <div id="custom-brushes">
+      <div id="custom-brush-text-1">CUSTOM BRUSHES</div>
+      <div class="custom-brush-wrapper" id="custom-brush-wrapper-1">
+        <canvas id="custom-brush-1" class="custom-brush" resize stats hidpi="off"></canvas>
+        <div id="custom-brush-trash-1" class="custom-brush-trash">&times;</div>
+      </div>
+      <div class="custom-brush-wrapper" id="custom-brush-wrapper-2">
+        <canvas id="custom-brush-2" class="custom-brush" resize stats hidpi="off"></canvas>
+        <div id="custom-brush-trash-2" class="custom-brush-trash">&times;</div>
+      </div>
+      <div class="custom-brush-wrapper" id="custom-brush-wrapper-3">
+        <canvas id="custom-brush-3" class="custom-brush" resize stats hidpi="off"></canvas>
+        <div id="custom-brush-trash-3" class="custom-brush-trash">&times;</div>
+      </div>
+      <div class="custom-brush-wrapper" id="custom-brush-wrapper-4">
+        <canvas id="custom-brush-4" class="custom-brush" resize stats hidpi="off"></canvas>
+        <div id="custom-brush-trash-4" class="custom-brush-trash">&times;</div>
+      </div>
+    </div>
+    <div id="cusotm-brushsshs-control">
+      SCALE CUSTOM BRUSHES
+      <input type="range" class="customBrushScale" value="50" />
+      ROTATE
+      <input type="range" class="customBrushRotate" min="-180" max="180" />
+      SKEW
+      <input type="range" class="customBrushSkew" min="-100" max="100" />
+    </div>
+  </div>
+  <div class="body-container" id="custom-brush-big-container">
+    THIS IS A CUSTOM BRUSH TOO
+    <div class="custom-brush-wrapper" id="custom-brush-wrapper-5">
+      <canvas id="custom-brush-5" class="custom-brush" resize stats hidpi="off"></canvas>
+      <div id="custom-brush-trash-5" class="custom-brush-trash">&times;</div>
+    </div>
+  </div>
+  <div class="body-container" id="image-land-container">
+    <div id="image-land-canvases">
+      <canvas id="image-land"></canvas>
+      <canvas id="webcam-canvas">
+      </canvas>
+      <div class="camera">
+        <video id="webcam-video"></video>
+      </div>
+    </div>
+    <div id="image-land-controls">
+      <div id="import-image">IMPORT IMAGE <input type="file" id="fileUpload" accept=".jpg, .jpeg, .png"></div>
+      <div id="image-controls">
+        <div class="image-toggle">
+          <div class="toggle-text">SCALED IMAGE</div>
+          <div id="toggle-scaledImg" class="toggleImg-thing">
+            <div id="scaledImg-x" class="toggle-x">&times;</div>
+          </div>
+        </div>
+        <div class="image-toggle">
+          <div class="toggle-text">FULL IMAGE</div>
+          <div id="toggle-fullImg" class="toggleImg-thing">
+            <div id="fullImg-x" class="toggle-x">&times;</div>
+          </div>
+        </div>
+      </div>
+      <div id="webcam-controls">
+        <button id="webcam-enable">ENABLE WEBCAM</button>
+        <button id="webcam-disable">DISABLE WEBCAM</button>
+        <button id="webcam-startbutton">SET WEBCAM AS CURRENT IMAGE</button>
+      </div>
+    </div>
+  </div>
+  <div class="body-container" id="text-land-container">
+    <span id="text-title"> TEXT SHIT</span>
+    <span id="text-size-wrapper">
+      FONT SIZE
+      <input type="range" id="text-size" min="1" max="100" value="12" />
+    </span>
+    <span id="text-family-wrapper">
+      FONT FAMILY
+      <input type="range" id="text-family" min="1" max="10" value="5" />
+    </span>
+    <span class="text-actual-text-wrapper">
+      TEXT
+      <input type="textarea" id="text-actual-text" />
+    </span>
+  </div>
+</body>
+</html>

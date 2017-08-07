@@ -1,5 +1,3 @@
-console.log("???")
-
 //GLOBAL SHIT
 var currentColor = 'black'
 var defineBrush;
@@ -15,7 +13,8 @@ var imgRect;
 var imgRectPath;
 var imgRaster;
 var textFamily;
-var textVal;
+var textVal = "";
+var textSize;
 
 //modifiers
 var traceMod = false;
@@ -35,14 +34,10 @@ var fontsArr = ['pokemon', 'wingdings', 'comicsans', 'facebook', 'times',
                 'harrypotter', 'badcoma', 'futura', 'ptmono'];
 
 function setMode(shape) {
-  console.log("enter")
   defaultBrushMode = customBrushMode = rectangleMode = triangleMode =
   circleMode = imageMode = textMode = false;
   window[shape + "Mode"] = true;
-  console.log(textMode);
 }
-
-
 
 $(document).ready(function() {
   $('#scaledImg-x').css("opacity", "1")
@@ -78,8 +73,22 @@ $(document).ready(function() {
   })
 
   //text SHIT
-  fontSize = $("#text-size").val();
-  fontFamily = fontsArr[$("#text-size").val()];
+
+  $('#text-size').on('change', function() {
+    console.log($("#text-size").val())
+
+  })
+
+  $('#text-actual-text').on('keyup', function() {
+    textVal = $("#text-actual-text").val();
+  })
+  $('#text-size').on('change', function() {
+    textSize = $("#text-size").val();
+  })
+  $('#text-family').on('change', function() {
+    textFamily = fontsArr[$("#text-family").val() - 1];
+    console.log(textFamily)
+  });
 
 
   //toggles
