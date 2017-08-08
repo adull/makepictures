@@ -129,6 +129,7 @@ function onMouseDown(event) {
   }
   else if(textMode) {
     var text = new PointText(new Point(event.point));
+    var test = new PointText(new Point(event.point));
     text.fontSize = textSize
     text.fillColor = currentColor;
     text.fontFamily = textFamily;

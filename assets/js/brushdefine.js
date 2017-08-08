@@ -111,6 +111,29 @@ $('.customBrushSkew').on('mousedown', function() {
 })
 
 
+$("#custom-brush-fill").on('click', function() {
+  if(defaultBrushMode || customBrushMode ) {
+    defineBrush.fillColor = currentColor;
+  }
+  if(circleMode) {
+    circle.fillColor = currentColor;
+  }
+  if(rectangleMode) {
+    rectPath.fillColor = currentColor;
+  }
+  if(triangleMode) {
+    triangle.fillColor = currentColor;
+  }
+  group.fillColor = currentColor;
+
+  //weird lag issues made me do it
+  setTimeout(function() {
+    brushPathImg = canvas[0].toDataURL();
+  }, 100);
+})
+
+
+
 function onMouseDown(event) {
   brushThickness = $('#line-thickness').val();
   canvas = this.view.element.id
@@ -284,31 +307,4 @@ function onMouseUp(event) {
     console.log(canvas)
     brushPathImg = canvas[0].toDataURL();
   },100)
-
-}
-
-function onKeyDown(event) {
-  if(event.key == 'k') {
-    if(defaultBrushMode || customBrushMode ) {
-      defineBrush.fillColor = currentColor;
-    }
-    if(circleMode) {
-      circle.fillColor = currentColor;
-    }
-    if(rectangleMode) {
-      rectPath.fillColor = currentColor;
-    }
-    if(triangleMode) {
-      triangle.fillColor = currentColor;
-    }
-    group.fillColor = currentColor;
-
-    //weird lag issues made me do it
-    setTimeout(function() {
-      brushPathImg = canvas[0].toDataURL();
-    }, 100);
-  }
-  if(event.key == 'z') {
-    event.preventDefault();
-  }
 }

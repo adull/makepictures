@@ -56,7 +56,6 @@ $(document).ready(function() {
     setMode(shapeMode);
   })
   $('#color-picker-space').on('click', function() {
-    console.log("you mother")
     var valGoingUp = true;
     var valGoingDown = false;
     $(this).text("PRESS SPACE TO STOP");
@@ -68,17 +67,10 @@ $(document).ready(function() {
         valGoingDown = false;
       }
       changeColorVal(i)
-      console.log($('#color-value').val())
     }
   })
 
   //text SHIT
-
-  $('#text-size').on('change', function() {
-    console.log($("#text-size").val())
-
-  })
-
   $('#text-actual-text').on('keyup', function() {
     textVal = $("#text-actual-text").val();
   })
@@ -89,6 +81,33 @@ $(document).ready(function() {
     textFamily = fontsArr[$("#text-family").val() - 1];
     console.log(textFamily)
   });
+
+  //piano SHIT
+  function addPianoKey(note, color, i) {
+    var key = "key-" + note + "-" + i;
+    if(color === 'white') {
+      var whiteText = "<span class='piano-key-white' id='" + key + "'></span>";
+      $("#piano-keys").append(whiteText);
+    }
+    if(color === 'black') {
+      var blackText = "<span class='piano-key-black' id='" + key + "'></span>";
+      $("#piano-keys").append(blackText);
+    }
+  }
+  for(i = 0; i < 5; i ++) {
+    addPianoKey('c', 'white', i);
+    addPianoKey('c-sharp', 'black', i);
+    addPianoKey('d', 'white', i);
+    addPianoKey('d-sharp', 'black', i);
+    addPianoKey('e', 'white', i);
+    addPianoKey('f', 'white', i);
+    addPianoKey('f-sharp', 'black', i);
+    addPianoKey('g', 'white', i);
+    addPianoKey('g-sharp', 'black', i);
+    addPianoKey('a', 'white', i);
+    addPianoKey('a-sharp', 'black', i);
+    addPianoKey('b', 'white', i);
+  }
 
 
   //toggles

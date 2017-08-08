@@ -127,6 +127,10 @@ html, body {
     flex-direction: column;
     position: relative;
     left: 5px;
+    #custom-brush-fill {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
 }
@@ -202,6 +206,34 @@ html, body {
   flex-direction: column;
   #text-title {
     text-decoration: underline;
+  }
+}
+
+#piano-body {
+  width: 400px;
+  height: 200px;
+
+  #piano-keys {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    .piano-key-white {
+      height: 100%;
+      width: 100px;
+      position: relative;
+      top: 0;
+      background-color: white;
+      width: 40px;
+      border: 1px solid black;
+    }
+    .piano-key-black {
+      height:50%;
+      right: 20px;
+      width: 100px;
+      position: relative;
+      top: 0;
+      background-color: black;
+    }
   }
 }
 
