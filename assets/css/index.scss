@@ -44,6 +44,13 @@ html, body {
   #main-canv-controls {
     display: flex;
     flex-direction: column;
+    #paint-undo {
+      display: flex;
+      div {
+        width: 50%;
+        text-decoration: underline;
+      }
+    }
   }
   .make-shape {
     border-bottom: 2px solid black;

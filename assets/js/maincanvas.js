@@ -62,8 +62,18 @@ $('#group-skew').on('mouseup', function() {;
   lockSkew = true;
 });
 
+$("#click-undo").on("click", function() {
+  group.remove();
+  $("#click-undo").css("cursor", "default");
+});
+
+$("#click-paint").on("click", function() {
+  group.fillColor = currentColor;
+});
 
 function onMouseDown(event) {
+  $("#click-paint").css("cursor", "pointer");
+  $("#click-undo").css("cursor", "pointer");
   brushThickness = $('#line-thickness').val();
   group = new Group();
   rotateAmt = 0;
@@ -250,16 +260,4 @@ function onMouseUp() {
   groupStartWidth = group.bounds.width;
   groupStartHeight = group.bounds.height;
   groupStartRotation = group.rotation;
-}
-
-function onKeyDown(event) {
-  if(event.key == 'k') {
-    // if(mainBrush) {
-    // console.log(currentColor)
-      group.fillColor = currentColor;
-    // }
-  }
-  if(event.key == 'z') {
-    group.remove();
-  }
 }
