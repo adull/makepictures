@@ -210,17 +210,17 @@ html, body {
 }
 
 #piano-body {
-  width: 400px;
+  // width: 400px;
   height: 200px;
 
   #piano-keys {
     height: 100%;
     width: 100%;
     display: flex;
+    position: relative;
     .piano-key-white {
       height: 100%;
-      width: 100px;
-      position: relative;
+      // width: 100px;
       top: 0;
       background-color: white;
       width: 40px;
@@ -228,9 +228,7 @@ html, body {
     }
     .piano-key-black {
       height:50%;
-      right: 20px;
-      width: 100px;
-      position: relative;
+      width: 28px;
       top: 0;
       background-color: black;
     }

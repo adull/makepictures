@@ -92,9 +92,15 @@ $(document).ready(function() {
     if(color === 'black') {
       var blackText = "<span class='piano-key-black' id='" + key + "'></span>";
       $("#piano-keys").append(blackText);
+      var item = $("#key-" + note +"-" + i)
+      console.log(item);
+      // var posLeft = item.position().left;
+      var posLeft = item[0].offsetLeft;
+      item.css("position", "absolute");
+      item.css("left", (posLeft - 14).toString()+"px");
     }
   }
-  for(i = 0; i < 5; i ++) {
+  for(i = 0; i < 2; i ++) {
     addPianoKey('c', 'white', i);
     addPianoKey('c-sharp', 'black', i);
     addPianoKey('d', 'white', i);
@@ -108,6 +114,30 @@ $(document).ready(function() {
     addPianoKey('a-sharp', 'black', i);
     addPianoKey('b', 'white', i);
   }
+  $('.piano-key-white').on('mousedown', function() {
+    // $(this).css("width", "35px");
+    $(this).css("background-color", "#CCCCCC");
+    $('.piano-key-white').on('mouseleave', function() {
+      // $(this).css("width", "40px");
+      $(this).css("background-color", "#FFFFFF");
+    })
+  })
+  $('.piano-key-white').on('mouseup', function() {
+    // $(this).css("width", "40px");
+    $(this).css("background-color", "#FFFFFF");
+  })
+  $('.piano-key-black').on('mousedown', function() {
+    // $(this).css("width", "24px");
+    $(this).css("background-color", "yellow");
+    $('.piano-key-black').on('mouseleave', function() {
+      // $(this).css("width", "28px");
+      $(this).css("background-color", "#000000");
+    })
+  })
+  $('.piano-key-black').on('mouseup', function() {
+    // $(this).css("width", "28px");
+    $(this).css("background-color", "#000000");
+  })
 
 
   //toggles
